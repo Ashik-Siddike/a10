@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 function validatePassword(password) {
   if (password.length < 6) return 'Password must be at least 6 characters';
@@ -24,15 +25,16 @@ export default function Register() {
     setError('');
     const passwordError = validatePassword(password);
     if (passwordError) {
-      setError(passwordError);
+      toast.error(passwordError);
       return;
     }
     setLoading(true);
     try {
       await register(name, email, password, photoURL);
+      toast.success('Registration successful!');
       navigate('/');
     } catch (err) {
-      setError('Registration failed');
+      toast.error('Registration failed');
     }
     setLoading(false);
   };

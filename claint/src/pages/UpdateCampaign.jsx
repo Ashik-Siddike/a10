@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 import { useAuth } from '../contexts/AuthContext';
+import Spinner from '../components/Spinner';
 
 const types = [
   'Personal Issue',
@@ -26,6 +27,7 @@ export default function UpdateCampaign() {
   });
   const [loading, setLoading] = useState(true);
   const [msg, setMsg] = useState('');
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     async function fetchCampaign() {
@@ -46,6 +48,7 @@ export default function UpdateCampaign() {
           userName: res.data.userName,
         });
       } catch (err) {
+        setError(true);
         setMsg('Failed to fetch campaign.');
       }
       setLoading(false);
@@ -84,7 +87,9 @@ export default function UpdateCampaign() {
       <h2 className="text-2xl font-bold mb-4">Update Campaign</h2>
       {msg && <div className="mb-4 text-green-600 font-semibold">{msg}</div>}
       {loading ? (
-        <div className="text-center py-8">Loading...</div>
+        <Spinner />
+      ) : error ? (
+        <div className="text-center py-8">Failed to load campaign.</div>
       ) : (
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input name="image" type="url" placeholder="Image URL" value={form.image} onChange={handleChange} required className="border rounded px-3 py-2" />

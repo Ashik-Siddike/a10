@@ -1,7 +1,6 @@
-// Vercel serverless API route for auth
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const User = require('../sarvar/models/User');
 
 module.exports = async (req, res) => {
   if (req.method === 'POST' && req.url === '/register') {

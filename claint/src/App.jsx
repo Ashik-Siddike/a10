@@ -11,6 +11,7 @@ import AddCampaign from './pages/AddCampaign';
 import MyCampaigns from './pages/MyCampaigns';
 import UpdateCampaign from './pages/UpdateCampaign';
 import MyDonations from './pages/MyDonations';
+import NotFound from './pages/NotFound';
 
 function Placeholder({ name }) {
   return <div style={{ padding: 40, textAlign: 'center' }}><h2>{name} Page</h2></div>;
@@ -20,7 +21,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="*" element={<Placeholder name="404 Not Found" />} />
+        <Route path="*" element={<NotFound />} />
         <Route
           path="/"
           element={

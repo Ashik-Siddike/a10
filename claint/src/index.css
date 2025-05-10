@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes float1 {
+  0%, 100% { transform: translateY(0) scale(1);}
+  50% { transform: translateY(-30px) scale(1.08);}
+}
+@keyframes float2 {
+  0%, 100% { transform: translateY(0) scale(1);}
+  50% { transform: translateY(40px) scale(1.04);}
+}
+@keyframes float3 {
+  0%, 100% { transform: translateY(0) scale(1);}
+  50% { transform: translateY(-20px) scale(1.12);}
+}
+.animate-float1 { animation: float1 7s ease-in-out infinite; }
+.animate-float2 { animation: float2 9s ease-in-out infinite; }
+.animate-float3 { animation: float3 11s ease-in-out infinite; }
+
+body {
+  @apply bg-gray-50 transition-colors duration-300;
+}
+html.dark body {
+  background: linear-gradient(135deg, #181c2f 0%, #232946 100%);
+}

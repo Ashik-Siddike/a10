@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 export default function Login() {
   const { login, googleLogin } = useAuth();
@@ -18,7 +19,7 @@ export default function Login() {
       await login(email, password);
       navigate('/');
     } catch (err) {
-      setError('Invalid email or password');
+      toast.error('Invalid email or password');
     }
     setLoading(false);
   };
@@ -30,7 +31,7 @@ export default function Login() {
       await googleLogin();
       navigate('/');
     } catch (err) {
-      setError('Google login failed');
+      toast.error('Google login failed');
     }
     setLoading(false);
   };

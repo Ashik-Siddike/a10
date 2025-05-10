@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../utils/api';
+import Spinner from '../components/Spinner';
 
 export default function CampaignDetails() {
   const { id } = useParams();
@@ -23,7 +24,7 @@ export default function CampaignDetails() {
     fetchCampaign();
   }, [id]);
 
-  if (loading) return <div className="text-center py-8">Loading...</div>;
+  if (loading) return <Spinner />;
   if (error) return <div className="text-center py-8 text-red-500">{error}</div>;
   if (!campaign) return null;
 
